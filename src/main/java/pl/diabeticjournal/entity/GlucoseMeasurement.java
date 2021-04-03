@@ -1,9 +1,12 @@
 package pl.diabeticjournal.entity;
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Data
 @Entity
 public class GlucoseMeasurement {
 
