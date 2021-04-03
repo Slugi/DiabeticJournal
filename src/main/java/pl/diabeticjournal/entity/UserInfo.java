@@ -1,7 +1,10 @@
 package pl.diabeticjournal.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 public class UserInfo {
 
@@ -15,7 +18,7 @@ public class UserInfo {
 
   private int height;
 
-  private String sex;
+  private String gender;
 
   @OneToOne private User user;
 }
