@@ -10,11 +10,12 @@ import pl.diabeticjournal.entity.Role;
 import pl.diabeticjournal.entity.User;
 import pl.diabeticjournal.repository.RoleRepository;
 import pl.diabeticjournal.repository.UserRepository;
-
+import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.HashSet;
 
 @Service
+@Transactional
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
