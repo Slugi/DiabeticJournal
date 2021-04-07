@@ -1,18 +1,14 @@
 package pl.diabeticjournal.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.diabeticjournal.entity.User;
+import pl.diabeticjournal.entity.Token;
 
-import java.security.Principal;
 import java.util.Optional;
 
-
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface TokenRepository extends JpaRepository<Token, Long> {
 
-Optional<User> findByUserName(String userName);
-
-
-
+Optional<Token> findTokenByTokenValue(String value);
 }

@@ -24,7 +24,13 @@ public class User implements UserDetails {
 
     private String password;
 
-    private String role;
+    private boolean isEnabled;
+
+    private String role = "ROLE_USER";
+
+    public void setEnabled(boolean enabled){
+        isEnabled = enabled;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -58,7 +64,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 
 }

@@ -1,25 +1,25 @@
 package pl.diabeticjournal.entity;
 
-
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
+@Entity
 @Data
-@Builder
 @AllArgsConstructor
-@NoArgsConstructor
-@Entity(name = "roles")
-
-public class Role {
+@RequiredArgsConstructor
+public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id")
+    private Long id;
 
-    private int id;
+    private String tokenValue;
 
-    private String role;
+    @OneToOne
+    private User user;
+
+
 }
