@@ -31,17 +31,27 @@ public class UserService {
 
   private void sendToken(User user) {
     String tokenValue = UUID.randomUUID().toString();
+    String verifyMessage = "Kliknij w podany link, aby potwierdzić rejestrację";
     Token token = new Token();
     token.setTokenValue(tokenValue);
     token.setUser(user);
     tokenRepository.save(token);
     String url = "http://localhost:8080/token?value=" + tokenValue;
     try {
-      mailService.sendMail(user.getUsername(), "Potwierdzenie rejestracji!", url, false);
+      mailService.sendMail(user.getEmail(), "Potwierdzenie rejestracji!",verifyMessage +
+              "\n" + url, false);
     } catch (MessagingException e) {
       e.printStackTrace();
     }
 
+  }
+
+  public boolean isEmailexists(User user){
+    if (userRepo.findUserByEmail(user.getEmail()).isEmpty()) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 

@@ -17,6 +17,6 @@ private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userRepository.findByUserName(userName).orElseThrow();
+        return userRepository.findByUserName(userName).orElseThrow(()-> new RuntimeException("Nie znaleziono użytkownika"));
     }
 }

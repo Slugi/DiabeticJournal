@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pl.diabeticjournal.entity.Token;
 import pl.diabeticjournal.entity.User;
 import pl.diabeticjournal.repository.TokenRepository;
+import pl.diabeticjournal.repository.UserRepository;
 import pl.diabeticjournal.services.UserService;
 
-import java.security.Principal;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 
 @Controller
 @AllArgsConstructor
 public class RegistrationController {
+  private UserRepository userRepo;
   private UserService userService;
   private TokenRepository tokenRepository;
   private PasswordEncoder passwordEncoder;
@@ -30,17 +35,25 @@ public class RegistrationController {
 
   @PostMapping("/register")
   @ResponseBody
-  public String register(User user) {
+  //Zmienić z @ResponseBody na MVC, info o istniejącym mailu
+  public String register(User user, HttpServletResponse resp) throws IOException {
+    if(!userService.isEmailexists(user)){
     userService.registerUser(user);
-    return "Potwierdź rejestrację mailowo.";
+      return "Potwierdź rejestrację, klikając w link przesałny w mailu!";
+    }else{
+      resp.sendRedirect("/register");
+      return "Podany email już istnieje, podaj inny.";
+    }
+
   }
 
   @GetMapping("/token")
   public String token(@RequestParam String value) {
-    Token byValue = tokenRepository.findTokenByTokenValue(value).orElseThrow();
+
+    Token byValue = tokenRepository.findTokenByTokenValue(value).orElseThrow(() -> new RuntimeException("Nie prawidłowa wartość, kliknij w przesłany link. Nie zmieniaj go!"));
     User user = byValue.getUser();
     user.setEnabled(true);
-    userService.registerUser(user);
-    return "Welcome";
+    userRepo.save(user);
+    return "redirect:/login";
   }
 }
