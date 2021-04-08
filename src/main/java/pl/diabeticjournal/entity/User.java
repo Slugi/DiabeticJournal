@@ -1,10 +1,12 @@
 package pl.diabeticjournal.entity;
 
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -27,6 +29,9 @@ public class User implements UserDetails {
     private boolean isEnabled;
 
     private String role = "ROLE_USER";
+
+    @Column(unique = true)
+    private String email;
 
     public void setEnabled(boolean enabled){
         isEnabled = enabled;

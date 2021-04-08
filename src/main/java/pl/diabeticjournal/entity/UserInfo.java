@@ -25,8 +25,7 @@ public class UserInfo {
 
   private String gender;
 
-  @Email(message = "Please provide a valid email")
-  private String email;
+
 
   @Length(min = 5, message = "First name must have at least 5 characters")
   @NotEmpty(message = "Please provide a name")
