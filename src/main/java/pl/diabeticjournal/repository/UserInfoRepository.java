@@ -3,16 +3,12 @@ package pl.diabeticjournal.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pl.diabeticjournal.entity.User;
+import pl.diabeticjournal.entity.UserInfo;
+
 import java.util.Optional;
 
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-Optional<User> findByUserName(String userName);
-Optional<User> findUserByEmail(String email);
-Optional<User> findUserById(Long Id);
-
-
-
+public interface UserInfoRepository extends JpaRepository<UserInfo,Long> {
+Optional<User> findUserByUser(String userName);
 }

@@ -2,9 +2,7 @@ package pl.diabeticjournal.entity;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -25,8 +23,6 @@ public class UserInfo {
 
   private String gender;
 
-
-
   @Length(min = 5, message = "First name must have at least 5 characters")
   @NotEmpty(message = "Please provide a name")
   private String firstName;
@@ -35,10 +31,11 @@ public class UserInfo {
   @NotEmpty(message = "Please provide a name")
   private String lastName;
 
-  @NotEmpty(message = "Please enter diabetic type")
+
   @Min(1)
   @Max(2)
   private int diabeticType;
 
-  @OneToOne private User user;
+@OneToOne
+  private User user;
 }
