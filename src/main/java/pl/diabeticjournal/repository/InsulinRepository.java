@@ -1,10 +1,13 @@
 package pl.diabeticjournal.repository;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.diabeticjournal.entity.Role;
+import pl.diabeticjournal.entity.Insulin;
+
+
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Integer> {
-    Role findByRole(String role);
+public interface InsulinRepository extends JpaRepository<Insulin,Long> {
+
 }
