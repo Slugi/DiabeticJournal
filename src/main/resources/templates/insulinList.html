@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insuliny</title>
+</head>
+<body>
+
+<tr th:each="insulin: ${insulins}">
+    Id:
+    <td th:text="${insulin.id}"/>
+    Nazwa:
+    <td th:text="${insulin.name}"/>
+    Typ:
+    <td th:text="${insulin.type}"/>
+    <br>
+</tr>
+</body>
+</html>

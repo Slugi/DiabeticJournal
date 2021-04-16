@@ -6,7 +6,7 @@ import pl.diabeticjournal.entity.User;
 import pl.diabeticjournal.entity.UserInfo;
 import pl.diabeticjournal.repository.UserInfoRepository;
 import javax.transaction.Transactional;
-import java.security.Principal;
+
 
 
 @Service

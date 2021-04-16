@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj Insulinę</title>
+</head>
+<body>
+<form th:action="@{/insulin}" method="post">
+Nazwa Insuliny:
+<input type="text" name="name"/><br>
+Rodzaj insuliny:
+<input type="text" name="type"><br>
+<button type="submit">Dodaj insulinę</button>
+</form>
+</body>
+</html>
