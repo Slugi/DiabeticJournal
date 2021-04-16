@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+    <title>Twoje dane</title>
+</head>
+<body>
+<h2>Uzupełnij informacje o sobie:</h2>
+<form action="#" th:action="@{/userinfoadd}" th:object="${userInfo}" method="post"/>
+<table>
+    <tr>
+        Imię:
+        <input type="text" th:field="*{userInfo.firstName}" name="firstName"/><br>
+        <div th:if="${#fields.hasErrors('userInfo.firstName')}" th:errors="*{userInfo.firstName}" cssClass="error"></div>
+        <br>
+    </tr>
+    <tr>
+        Nazwisko:
+        <input type="text" th:field="*{userInfo.lastName}" name="firstName"/><br>
+        <div th:if="${#fields.hasErrors('userInfo.lastName')}" th:errors="*{userInfo.lastName}" cssClass="error"></div><br>
+    </tr>
+    <tr>
+        Wiek:
+        <input type="number" th:field="*{userInfo.age}" name="age"/><br>
+        <div th:if="${#fields.hasErrors('userInfo.age')}" th:errors="*{userInfo.age}" cssClass="error"></div><br>
+    </tr>
+    <tr>
+        Płeć:
+        <input type="text" th:field="*{userInfo.gender}" name="gender"/><br>
+        <div th:if="${#fields.hasErrors('userInfo.gender')}" th:errors="*{userInfo.gender}" cssClass="error"></div><br>
+    </tr>
+    <tr>
+        Typ cukrzycy:
+        <input type="number" th:field="*{userInfo.diabeticType}" name="diabeticType"/>
+        <div th:if="${#fields.hasErrors('userInfo.diabeticType')}" th:errors="*{userInfo.diabeticType}" cssClass="error"></div><br>
+    </tr>
+    <tr>
+        Wzrost:
+        <input type="number" th:field="*{userInfo.height}" name="height"/><br>
+        <div th:if="${#fields.hasErrors('userInfo.height')}" th:errors="*{userInfo.height}" cssClass="error"></div><br>
+    </tr>
+    <tr>
+        Waga:
+        <input type="number" th:field="*{userInfo.weight}" name="weight"/><br>
+        <div th:if="${#fields.hasErrors('userInfo.weight')}" th:errors="*{userInfo.weight}" cssClass="error"></div><br>
+    </tr>
+    <input type="hidden" itemvalue="id" path="user"/>
+
+</table>
+
+<button type="submit">Potwierdzaj</button>
+</body>
+</html>

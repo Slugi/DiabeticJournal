@@ -7,7 +7,6 @@ import pl.diabeticjournal.entity.Token;
 import pl.diabeticjournal.entity.User;
 import pl.diabeticjournal.repository.TokenRepository;
 import pl.diabeticjournal.repository.UserRepository;
-
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.util.UUID;
@@ -38,20 +37,34 @@ public class UserService {
     tokenRepository.save(token);
     String url = "http://localhost:8080/token?value=" + tokenValue;
     try {
-      mailService.sendMail(user.getEmail(), "Potwierdzenie rejestracji!",verifyMessage +
-              "\n" + url, false);
+      mailService.sendMail(
+          user.getEmail(), "Potwierdzenie rejestracji!", verifyMessage + "\n" + url, false);
     } catch (MessagingException e) {
       e.printStackTrace();
     }
-
   }
 
-  public boolean isEmailexists(User user){
+  public boolean isEmailexists(User user) {
     if (userRepo.findUserByEmail(user.getEmail()).isEmpty()) {
       return false;
     } else {
       return true;
     }
+  }
+
+  public boolean isUserNameExists(User user) {
+    if (userRepo.findByUserName(user.getUsername()).isEmpty()) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public User getUserByName(String name) {
+
+    return userRepo
+        .findByUserName(name)
+        .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono użytkownika."));
   }
 
 
