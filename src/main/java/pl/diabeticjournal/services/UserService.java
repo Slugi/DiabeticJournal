@@ -66,6 +66,8 @@ public class UserService {
         .findByUserName(name)
         .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono użytkownika."));
   }
-
-
+public void activate(User user){
+    user.setEnabled(true);
+    userRepo.save(user);
+}
 }

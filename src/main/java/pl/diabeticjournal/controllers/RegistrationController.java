@@ -12,48 +12,49 @@ import pl.diabeticjournal.entity.User;
 import pl.diabeticjournal.repository.TokenRepository;
 import pl.diabeticjournal.repository.UserRepository;
 import pl.diabeticjournal.services.UserService;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
 @AllArgsConstructor
 public class RegistrationController {
-  private UserRepository userRepo;
-  private UserService userService;
-  private TokenRepository tokenRepository;
+    private UserRepository userRepo;
+    private UserService userService;
+    private TokenRepository tokenRepository;
 
-  @GetMapping("/register")
-  public String userRegister(Model model) {
-    model.addAttribute("user", new User());
-    return "register";
-  }
-
-  @PostMapping("/register")
-  @ResponseBody
-  // Zmienić z @ResponseBody na MVC, info o istniejącym mailu
-  public String register(User user, HttpServletResponse resp) throws IOException {
-    if (!userService.isEmailexists(user) || !userService.isUserNameExists(user)) {
-      userService.registerUser(user);
-      return "Potwierdź rejestrację, klikając w link przesałny w mailu!";
-    } else {
-      resp.sendRedirect("/register");
-      return "Podany email/login już istnieje, podaj inny.";
+    @GetMapping("/register")
+    public String userRegister(Model model) {
+        model.addAttribute("user", new User());
+        return "register";
     }
-  }
 
-  @GetMapping("/token")
-  public String token(@RequestParam String value) {
+    @PostMapping("/register")
+    @ResponseBody
+    // Zmienić z @ResponseBody na MVC, info o istniejącym mailu
+    public String register(User user, HttpServletResponse resp) throws IOException {
+        if (!userService.isEmailexists(user) || !userService.isUserNameExists(user)) {
+            userService.registerUser(user);
+            return "Potwierdź rejestrację, klikając w link przesałny w mailu!";
+        } else {
+            resp.sendRedirect("/register");
+            return "Podany email/login już istnieje, podaj inny.";
+        }
+    }
 
-    Token byValue =
-        tokenRepository
-            .findTokenByTokenValue(value)
-            .orElseThrow(
-                () ->
-                    new RuntimeException(
-                        "Nie prawidłowa wartość, kliknij w przesłany link. Nie zmieniaj go!"));
-    User user = byValue.getUser();
-    user.setEnabled(true);
-    userRepo.save(user);
-    return "redirect:/login";
-  }
+    @GetMapping("/token")
+    public String token(@RequestParam String value) {
+
+        Token byValue =
+                tokenRepository
+                        .findTokenByTokenValue(value)
+                        .orElseThrow(
+                                () ->
+                                        new RuntimeException(
+                                                "Nie prawidłowa wartość, kliknij w przesłany link. Nie zmieniaj go!"));
+        User user = byValue.getUser();
+        userService.activate(user);
+
+        return "redirect:/login";
+    }
 }

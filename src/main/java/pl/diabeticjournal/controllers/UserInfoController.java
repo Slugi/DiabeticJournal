@@ -31,7 +31,7 @@ public class UserInfoController {
   }
 
   @PostMapping("/userinfoadd")
-  public String userInfoAdd(@Valid UserInfo userInfo, User user, BindingResult result) {
+  public String userInfoAdd(@Valid UserInfo userInfo,BindingResult result, User user) {
     if (result.hasErrors()) {
       return "addUserInfo";
     }

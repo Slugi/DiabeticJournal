@@ -22,7 +22,7 @@ public class GlucoseMeasurement {
 
     private int insulinUnits;
 
-    private LocalDateTime measurementDateTime;
+    private LocalDateTime measurementDateTime = LocalDateTime.now();
 
     private int glucoseLevel;
 
