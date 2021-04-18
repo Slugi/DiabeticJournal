@@ -13,6 +13,7 @@ import pl.diabeticjournal.repository.TokenRepository;
 import pl.diabeticjournal.repository.UserRepository;
 import pl.diabeticjournal.services.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -32,9 +33,20 @@ public class RegistrationController {
     @PostMapping("/register")
     @ResponseBody
     // Zmienić z @ResponseBody na MVC, info o istniejącym mailu
-    public String register(User user, HttpServletResponse resp) throws IOException {
+    public String register(User user, HttpServletResponse resp, HttpServletRequest req) throws IOException {
+        String schema = req.getScheme();
+        String serverName = req.getServerName();
+        int serverPort = req.getServerPort();
+        String shemaPort;
+
+        if (("http".equals(schema) && serverPort == 80) || ("https".equals(schema) && serverPort == 443)) {
+            shemaPort = "";
+        } else {
+            shemaPort = ":" + serverPort;
+        }
+
         if (!userService.isEmailexists(user) || !userService.isUserNameExists(user)) {
-            userService.registerUser(user);
+            userService.registerUser(user, schema + "://" + serverName + shemaPort);
             return "Potwierdź rejestrację, klikając w link przesałny w mailu!";
         } else {
             resp.sendRedirect("/register");

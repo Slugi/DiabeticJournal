@@ -11,7 +11,7 @@
     <groupId>pl.diabeticjournal</groupId>
     <artifactId>diabeticjournal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+
 
     <name>diabeticjournal</name>
     <description>Diabetic Journal</description>
