@@ -20,7 +20,6 @@ import java.security.Principal;
 @Controller
 @AllArgsConstructor
 public class UserInfoController {
-  private UserInfoRepository userInfoRepository;
   private UserInfoService userInfoService;
   private UserService userService;
 

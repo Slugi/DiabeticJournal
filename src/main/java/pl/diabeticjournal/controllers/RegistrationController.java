@@ -20,7 +20,7 @@ import java.io.IOException;
 @Controller
 @AllArgsConstructor
 public class RegistrationController {
-    private UserRepository userRepo;
+
     private UserService userService;
     private TokenRepository tokenRepository;
 
