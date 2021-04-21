@@ -29,7 +29,7 @@ public class MeasurementController {
         return "glucoseMeasurementAdd";
     }
 
-    @PostMapping("/addmeasurement")
+    @PostMapping(value = "/addmeasurement", produces = "text/html;charset=UTF-8")
     public String userInfoAdd(GlucoseMeasurement measurement, User user, Insulin insulin) {
         measurementService.addMeasurement(measurement, user, insulin);
         return "redirect:allmeasurements";

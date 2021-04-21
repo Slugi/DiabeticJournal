@@ -18,8 +18,13 @@
     </tr>
    <tr>
         Insulina:
-        <input type="select" itemValue="id" path="insulin.id"  itemLabel="name"/>
-    </tr>
+
+           <li th:each="insulin: ${insulins}">
+               <input type="checkbox" th:value="${insulin.id}" th:text="${insulin.name}"  name="insulin"/>
+           </li>
+
+
+   </tr>
 
       <tr>
           Ilość insuliny:
