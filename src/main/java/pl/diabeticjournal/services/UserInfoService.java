@@ -27,5 +27,7 @@ public class UserInfoService {
     userInfo.setWeight(userInfo.getWeight());
     userInfoRepo.save(userInfo);
   }
-
+ public UserInfo showUserInfo(User user){
+    return userInfoRepo.findUserInfoByUser(user).orElseThrow(()-> new RuntimeException("Nie znaleziono użytkownika"));
+}
 }

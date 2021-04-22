@@ -30,7 +30,7 @@ public class MeasurementController {
     }
 
     @PostMapping(value = "/addmeasurement", produces = "text/html;charset=UTF-8")
-    public String userInfoAdd(GlucoseMeasurement measurement, User user, Insulin insulin) {
+    public String addMeasurement(GlucoseMeasurement measurement, User user, Insulin insulin) {
         measurementService.addMeasurement(measurement, user, insulin);
         return "redirect:allmeasurements";
     }
@@ -43,7 +43,7 @@ public class MeasurementController {
 
 
     @ModelAttribute("insulins")
-    public List<Insulin> insulin() {
+    public List<Insulin> insulins() {
         return insulinService.insulinList();
     }
 

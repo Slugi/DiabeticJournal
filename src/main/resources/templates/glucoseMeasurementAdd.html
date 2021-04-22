@@ -18,12 +18,10 @@
     </tr>
    <tr>
         Insulina:
+           <li th:each="insulin : ${insulins}">
 
-           <li th:each="insulin: ${insulins}">
-               <input type="checkbox" th:value="${insulin.id}" th:text="${insulin.name}"  name="insulin"/>
+               <input type="checkbox" th:value="${insulin.id}" th:text="${insulin.name}" name="insulin"/>
            </li>
-
-
    </tr>
 
       <tr>
@@ -36,7 +34,7 @@
       </tr>
       <tr>
           Aktywność przed pomiarem:
-          <textarea form="measurementform" name="activityBeforeMeasurement" cols="35" wrap="soft">
+          <textarea form="measurementform" name="activityBeforeMeasurement" cols="15" wrap="soft">
           </textarea>
       </tr>
       <tr>
@@ -45,7 +43,7 @@
       </tr>
       <tr>
           Dodatkowe uwagi:
-          <textarea form="measurementform" name="comments" cols="35" wrap="soft">
+          <textarea form="measurementform" name="comments" cols="15" wrap="soft">
           </textarea>
       </tr>
   </table>

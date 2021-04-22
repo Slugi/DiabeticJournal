@@ -38,9 +38,16 @@ public class UserInfoController {
     return "Welcome";
   }
 
-  @ModelAttribute("user")
-  public User user(String name, Principal principal) {
-    name = principal.getName();
-    return this.userService.getUserByName(name);
+  @GetMapping("/showinfo")
+  public String showUserInfo(Model model, User user){
+    model.addAttribute("userinfo", userInfoService.showUserInfo(user));
+    return "userInfoShow";
   }
+
+
+  @ModelAttribute("user")
+  public User user(Principal principal) {
+    return this.userService.getUserByName(principal.getName());
+  }
+
 }

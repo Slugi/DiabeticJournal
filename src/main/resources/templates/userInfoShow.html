@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Informacje o Tobie</title>
+</head>
+<body>
+<tr th:field="*{userinfo}">
+    <input type="hidden" itemvalue="id" path="user"/>
+    Imię:
+    <td th:text="${userinfo.firstName}"/>
+    <br>
+    Nazwisko:
+    <td th:text="${userinfo.lastName}"/>
+    <br>
+    Wiek:
+    <td th:text="${userinfo.age}"/>
+    <br>
+    Rodzaj cukrzycy:
+    <td th:text="${userinfo.diabeticType}"/>
+    <br>
+    Płeć:
+    <td th:text="${userinfo.gender}"/>
+    <br>
+    Wrost:
+    <td th:text="${userinfo.height}"/>
+    <br>
+    Waga:
+    <td th:text="${userinfo.weight}"/>
+    <br>
+</tr>
+<a href="/hello">Home</a>
+</body>
+</html>

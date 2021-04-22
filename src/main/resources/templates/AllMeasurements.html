@@ -7,17 +7,11 @@
 <body>
 
 <tr th:each="measurement: ${measurements}">
-    Id:
-    <td th:text="${measurement.id}"/>
-    <br>
-    Wpis użytkonika:
-    <td th:text="${measurement.user.username}"/>
-    <br>
     Data i godzina pomiaru:
     <td th:text="${measurement.measurementDateTime}"/>
     <br>
     Insulina:
-    <td th:text="${measurement.insulin}"/>
+    <td th:text="${measurement.insulin.name}"/>
     <br>
     Poziom glukozy:
     <td th:text="${measurement.glucoseLevel}"/>
