@@ -19,8 +19,7 @@
    <tr>
         Insulina:
            <li th:each="insulin : ${insulins}">
-
-               <input type="checkbox" th:value="${insulin.id}" th:text="${insulin.name}" name="insulin"/>
+               <input type="radio" th:value="${insulin.id}" th:text="${insulin.name}" name="insulin"/>
            </li>
    </tr>
 

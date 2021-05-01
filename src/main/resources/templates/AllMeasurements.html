@@ -7,6 +7,7 @@
 <body>
 
 <tr th:each="measurement: ${measurements}">
+    <input type="hidden" itemvalue="id" path="user"/>
     Data i godzina pomiaru:
     <td th:text="${measurement.measurementDateTime}"/>
     <br>

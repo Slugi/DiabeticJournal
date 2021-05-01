@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Transactional
 public class InsulinService {
-    private InsulinRepository insulinRepo;
+    private final InsulinRepository insulinRepo;
 
     public void addInsulin(Insulin insulin) {
         insulin.setName(insulin.getName());

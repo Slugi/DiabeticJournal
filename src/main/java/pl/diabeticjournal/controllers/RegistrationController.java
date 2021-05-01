@@ -21,8 +21,8 @@ import java.io.IOException;
 @AllArgsConstructor
 public class RegistrationController {
 
-    private UserService userService;
-    private TokenRepository tokenRepository;
+    private final UserService userService;
+    private final TokenRepository tokenRepository;
 
     @GetMapping("/register")
     public String userRegister(Model model) {

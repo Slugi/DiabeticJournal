@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pl.diabeticjournal.entity.User;
 import pl.diabeticjournal.entity.UserInfo;
-
 import java.util.Optional;
 
 

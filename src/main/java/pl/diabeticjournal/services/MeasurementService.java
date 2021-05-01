@@ -6,14 +6,17 @@ import pl.diabeticjournal.entity.GlucoseMeasurement;
 import pl.diabeticjournal.entity.Insulin;
 import pl.diabeticjournal.entity.User;
 import pl.diabeticjournal.repository.MeasurementRepository;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class MeasurementService {
 
-    private MeasurementRepository measurementRepo;
-    private InsulinService insulinService;
+    private final MeasurementRepository measurementRepo;
+    private final InsulinService insulinService;
 
 
     public void addMeasurement(GlucoseMeasurement measurement, User user, Insulin insulin) {
@@ -30,5 +33,13 @@ public class MeasurementService {
 
     public List<GlucoseMeasurement> measurements(){
         return measurementRepo.findAll();
+    }
+
+    public List<GlucoseMeasurement> getAll() {
+        return measurementRepo.findAll();
+    }
+
+    public List<GlucoseMeasurement> getMeasurementsByUser(User user){
+        return measurementRepo.findGlucoseMeasurementByUser(user).orElseThrow(()-> new RuntimeException("Nie znaleziono pomiarów użytkownika."));
     }
 }

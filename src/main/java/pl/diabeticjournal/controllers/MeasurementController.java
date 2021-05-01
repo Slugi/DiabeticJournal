@@ -36,8 +36,8 @@ public class MeasurementController {
     }
 
     @GetMapping("/allmeasurements")
-    public String measurements(Model model){
-        model.addAttribute("measurements", measurementService.measurements());
+    public String measurements(Model model, User user){
+        model.addAttribute("measurements", measurementService.getMeasurementsByUser(user));
         return "AllMeasurements";
     }
 

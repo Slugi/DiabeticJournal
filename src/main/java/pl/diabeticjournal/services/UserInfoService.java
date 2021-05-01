@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserInfoService {
 
-  private UserInfoRepository userInfoRepo;
+  private final UserInfoRepository userInfoRepo;
 
   public void addUserInfo(UserInfo userInfo, User user) {
     userInfo.setUser(user);

@@ -20,8 +20,8 @@ import java.security.Principal;
 @Controller
 @AllArgsConstructor
 public class UserInfoController {
-  private UserInfoService userInfoService;
-  private UserService userService;
+  private final UserInfoService userInfoService;
+  private final UserService userService;
 
   @GetMapping("/userinfoadd")
   public String userInfoAddForm(Model model) {

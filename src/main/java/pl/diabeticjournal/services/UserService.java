@@ -17,10 +17,10 @@ import java.util.UUID;
 @Transactional
 public class UserService {
 
-    private UserRepository userRepo;
-    private PasswordEncoder passwordEncoder;
-    private TokenRepository tokenRepository;
-    private MailService mailService;
+    private final UserRepository userRepo;
+    private final PasswordEncoder passwordEncoder;
+    private final TokenRepository tokenRepository;
+    private final MailService mailService;
 
     public void registerUser(User user, String url) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));

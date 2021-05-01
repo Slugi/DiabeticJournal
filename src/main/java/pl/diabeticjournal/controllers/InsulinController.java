@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class InsulinController {
 
-    private InsulinService insulinService;
+    private final InsulinService insulinService;
 
 
     @GetMapping("/insulin")
