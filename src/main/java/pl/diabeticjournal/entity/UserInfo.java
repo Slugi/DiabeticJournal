@@ -23,12 +23,12 @@ public class UserInfo {
 
   private String gender;
 
-  @Length(min = 5, message = "First name must have at least 5 characters")
-  @NotEmpty(message = "Please provide a name")
+  @Length(min = 5, message = "Imię musi mieć conajmniej 3 znaki")
+  @NotEmpty(message = "Podaj imię")
   private String firstName;
 
-  @Length(min = 5, message = "Last name must have at least 5 characters")
-  @NotEmpty(message = "Please provide a name")
+  @Length(min = 2, message = "Nazwisko musi mieć conajmniej 2 znaki")
+  @NotEmpty(message = "Podaj nazwisko")
   private String lastName;
 
 

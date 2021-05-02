@@ -26,8 +26,17 @@ public class UserInfoService {
     userInfo.setLastName(userInfo.getLastName());
     userInfo.setWeight(userInfo.getWeight());
     userInfoRepo.save(userInfo);
+
   }
  public UserInfo showUserInfo(User user){
     return userInfoRepo.findUserInfoByUser(user).orElseThrow(()-> new RuntimeException("Nie znaleziono użytkownika"));
 }
+  public boolean isUserInfoExists(User user) {
+    if (userInfoRepo.findUserInfoByUser(user).isEmpty()) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 }
