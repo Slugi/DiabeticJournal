@@ -5,6 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Hello Admin</h1>
+<h1>Twoja rola:<span th:text="${user.role}"></span><br></h1>
+<a href="/hello">Home</a><br>
+<a href="/userslist">Lista użytkowników</a><br>
+<a href="/insulinlistforadmin">Lista insulin</a><br>
+<a href="/allmeasurementlist">Lista pomiarów wszystkich użytkowników</a><br>
+
+<a href="/logout">Logout</a><br>
+
 </body>
 </html>

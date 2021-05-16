@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.diabeticjournal.entity.User;
 import pl.diabeticjournal.entity.UserInfo;
-import pl.diabeticjournal.repository.UserInfoRepository;
 import pl.diabeticjournal.services.UserInfoService;
 import pl.diabeticjournal.services.UserService;
 
@@ -20,28 +19,54 @@ import java.security.Principal;
 @Controller
 @AllArgsConstructor
 public class UserInfoController {
-  private UserInfoRepository userInfoRepository;
-  private UserInfoService userInfoService;
-  private UserService userService;
+    private final UserInfoService userInfoService;
+    private final UserService userService;
 
-  @GetMapping("/userinfoadd")
-  public String userInfoAddForm(Model model) {
-    model.addAttribute("userInfo", new UserInfo());
-    return "addUserInfo";
-  }
-
-  @PostMapping("/userinfoadd")
-  public String userInfoAdd(@Valid UserInfo userInfo, User user, BindingResult result) {
-    if (result.hasErrors()) {
-      return "addUserInfo";
+    @GetMapping("/userinfoadd")
+    public String userInfoAddForm(Model model) {
+        model.addAttribute("userInfo", new UserInfo());
+        return "addUserInfo";
     }
-    userInfoService.addUserInfo(userInfo, user);
-    return "Welcome";
-  }
 
-  @ModelAttribute("user")
-  public User user(String name, Principal principal) {
-    name = principal.getName();
-    return this.userService.getUserByName(name);
-  }
+    @PostMapping("/userinfoadd")
+    public String userInfoAdd(@Valid UserInfo userInfo, BindingResult result, User user) {
+        if (result.hasErrors()) {
+            return "addUserInfo";
+        }
+        userInfoService.addUserInfo(userInfo, user);
+        return "Welcome";
+
+    }
+
+    @GetMapping("/showinfo")
+    public String showUserInfo(Model model, User user) {
+        model.addAttribute("userinfo", userInfoService.showUserInfo(user));
+        return "userInfoShow";
+    }
+
+    @GetMapping("/edituserinfo")
+    public String editUserInfoForm(Model model, User user) {
+        model.addAttribute("userInfo", userInfoService.showUserInfo(user));
+        return "editUserInfo";
+    }
+
+    @PostMapping("/edituserinfo")
+    public String editUserInfo(@Valid UserInfo userInfo, BindingResult result, User user) {
+        if (result.hasErrors()) {
+            return "editUserInfo";
+        }
+        userInfoService.addUserInfo(userInfo, user);
+        return "Welcome";
+    }
+
+    @ModelAttribute("user")
+    public User user(Principal principal) {
+        return this.userService.getUserByName(principal.getName());
+    }
+
+    @ModelAttribute("userInfo")
+    public UserInfo userinfo(User user) {
+        return this.userInfoService.showUserInfo(user);
+    }
+
 }

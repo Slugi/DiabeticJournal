@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pomiary</title>
+</head>
+<body>
+<h2>Dodaj pomiar glukozy:</h2>
+<form action="#" th:action="@{/addmeasurement}" th:object="${GlucoseMeasurement}" method="post" id="measurementform"/>
+<table>
+    <input type="hidden" itemvalue="id" path="user"/>
+    <input type="hidden" itemvalue="id" path="GlucoseMeasurement"/>
+
+    <tr>
+        Poziom glukozy:
+        <input type="number" name="glucoseLevel"/>
+    </tr>
+    <tr>
+        Insulina:
+
+        <li th:each="insulin : ${insulins}">
+            <input type="radio" th:value="${insulin.id}" th:text="${insulin.name}" name="insulin"/>
+        </li>
+    </tr>
+
+    <tr>
+        Ilość insuliny:
+        <input type="number" name="insulinUnits"/>
+    </tr>
+    <tr>
+        Jesteś zestresowny/zestresowana?
+        <input type="text" name="stress"/>
+    </tr>
+    <tr>
+        Aktywność przed pomiarem:
+        <textarea form="measurementform" name="activityBeforeMeasurement" cols="15" wrap="soft">
+          </textarea>
+    </tr>
+    <tr>
+        Jaki masz nastrój?
+        <input type="text" name="mood"/>
+    </tr>
+    <tr>
+        Dodatkowe uwagi:
+        <textarea form="measurementform" name="comments" cols="15" wrap="soft">
+          </textarea>
+    </tr>
+</table>
+<button type="submit">Dodaj pomiar</button>
+</body>
+</html>

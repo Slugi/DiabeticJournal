@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pomiary:</title>
+</head>
+<body>
+
+<tr th:each="measurement: ${measurements}">
+    <input type="hidden" itemvalue="id" path="user"/>
+    Nazwa użytkownika:
+    <td th:text="${measurement.user.username}">
+    </td>
+    <input type="hidden" th:value="measurement.id"/>
+    <br>
+    Data i godzina pomiaru:
+    <td th:text="${measurement.measurementDateTime}"/>
+    <br>
+    Insulina:
+    <td th:text="${measurement.insulin.name}"/>
+    <br>
+    Poziom glukozy:
+    <td th:text="${measurement.glucoseLevel}"/>
+    <br>
+    Ilość insuliny:
+    <td th:text="${measurement.insulinUnits}"/>
+    <br>
+    Stres:
+    <td th:text="${measurement.stress}"/>
+    <br>
+    Aktywność przed pomiarem:
+    <td th:text="${measurement.activityBeforeMeasurement}"/>
+    <br>
+    Nastrój:
+    <td th:text="${measurement.mood}"/>
+    <br>
+    Dodatkowe uwagi:
+    <td th:text="${measurement.comments}"/>
+    <br>
+
+    <a th:href="@{editmeasurement/{id}(id=${measurement.id})}">Edytuj</a>
+
+
+</tr>
+<a href="/hello">Home</a>
+</body>
+</html>

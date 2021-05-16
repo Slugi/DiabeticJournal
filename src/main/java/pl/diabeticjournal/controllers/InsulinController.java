@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.diabeticjournal.entity.Insulin;
 import pl.diabeticjournal.services.InsulinService;
 
-import java.util.List;
+
 
 @Controller
 @AllArgsConstructor
 public class InsulinController {
 
-    private InsulinService insulinService;
+    private final InsulinService insulinService;
 
 
     @GetMapping("/insulin")
@@ -30,8 +30,8 @@ public class InsulinController {
     }
 
     @GetMapping("/insulinlist")
-    public String insulinList(Model model){
-       model.addAttribute("insulins", insulinService.insulinList());
+    public String insulinList(Model model) {
+        model.addAttribute("insulins", insulinService.insulinList());
         return "insulinList";
     }
 }

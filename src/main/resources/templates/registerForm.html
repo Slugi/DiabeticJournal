@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
         .error {
-            color:red;
+            color: red;
+        }
+
+        .alert-danger {
+            color: red;
         }
     </style>
+
 </head>
 <body>
 <h1>Rejestracja użytkownika</h1>
+<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+<div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
 <form th:action="@{/register}" method="post">
-Login:
+    Login:
     <input type="text" name="userName"/><br>
-Password:
+    Hasło:
     <input type="password" name="password"/><br>
-E-mail:
+    E-mail:
     <input type="email" name="email"/><br>
 
-Potwierdź:
+    Potwierdź:
     <button type="submit">Zarejestruj</button>
 </form>
 </body>

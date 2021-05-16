@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Nu,nu,nu</title>
+    <title>I See what You did there!</title>
 </head>
 <body>
-<h1>Nie ładnie!</h1>
-<h1>Wiesz, że nie wolno Ci tu wejść?</h1>
-<h1>Idź tam gdzie wolno Ci przebywać!</h1>
+<img th:src="@{/images/403-1.png}" width="629" height="422" alt="You shall not pass!"/>
+<h2><a href="/hello">Start</a></h2>
 </body>
 </html>

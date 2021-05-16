@@ -13,10 +13,10 @@ import pl.diabeticjournal.repository.UserRepository;
 @AllArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        return userRepository.findByUserName(userName).orElseThrow(()-> new RuntimeException("Nie znaleziono użytkownika"));
+        return userRepository.findByUserName(userName).orElseThrow(() -> new UsernameNotFoundException("Nie znaleziono użytkownika"));
     }
 }

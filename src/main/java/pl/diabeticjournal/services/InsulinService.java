@@ -13,15 +13,29 @@ import java.util.List;
 @AllArgsConstructor
 @Transactional
 public class InsulinService {
-    private InsulinRepository insulinRepo;
+    private final InsulinRepository insulinRepo;
 
-    public void addInsulin(Insulin insulin){
+    public void addInsulin(Insulin insulin) {
         insulin.setName(insulin.getName());
         insulin.setType(insulin.getType());
         insulinRepo.save(insulin);
     }
 
-    public List<Insulin> insulinList(){
+    public List<Insulin> insulinList() {
         return insulinRepo.findAll();
+    }
+
+    public Insulin findInsulinByName(String name) {
+        return insulinRepo.findInsulinByName(name).orElseThrow(()
+                -> new RuntimeException("Nie można znaleźć insuliny o takiej nazwie"));
+    }
+
+    public Insulin getInsulinById(Long id) {
+        return insulinRepo.findInsulinById(id).orElseThrow(()
+                -> new RuntimeException("Nie można znaleźć insuliny o takiej nazwie"));
+    }
+
+    public void deleteInsulin(Insulin insulin) {
+        insulinRepo.delete(insulin);
     }
 }

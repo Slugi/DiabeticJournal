@@ -13,9 +13,10 @@
     <title>Twoje dane</title>
 </head>
 <body>
-<h2>Uzupełnij informacje o sobie:</h2>
-<form action="#" th:action="@{/userinfoadd}" th:object="${userInfo}" method="post"/>
+<h2>Uaktualnij informacje o sobie:</h2>
+<form action="#" th:action="@{/edituserinfo}" th:object="${userInfo}" method="post"/>
 <table>
+    <input type="hidden" itemvalue="id" path="userInfo"/>
     <tr>
         Imię:
         <input type="text" th:field="*{userInfo.firstName}" name="firstName"/><br>
@@ -63,8 +64,9 @@
     </tr>
     <input type="hidden" itemvalue="id" path="user"/>
 
+
 </table>
 
-<button type="submit">Potwierdź</button>
+<button type="submit">Zapisz zmiany</button>
 </body>
 </html>
