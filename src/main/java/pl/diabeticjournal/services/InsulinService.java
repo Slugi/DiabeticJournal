@@ -26,6 +26,16 @@ public class InsulinService {
     }
 
     public Insulin findInsulinByName(String name) {
-        return insulinRepo.findInsulinByName(name).orElseThrow(() -> new RuntimeException("Nie można znaleźć insuliny o takiej nazwie"));
+        return insulinRepo.findInsulinByName(name).orElseThrow(()
+                -> new RuntimeException("Nie można znaleźć insuliny o takiej nazwie"));
+    }
+
+    public Insulin getInsulinById(Long id) {
+        return insulinRepo.findInsulinById(id).orElseThrow(()
+                -> new RuntimeException("Nie można znaleźć insuliny o takiej nazwie"));
+    }
+
+    public void deleteInsulin(Insulin insulin) {
+        insulinRepo.delete(insulin);
     }
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insuliny</title>
+</head>
+<body>
+
+<tr th:each="insulin: ${insulins}">
+    Id:
+    <td th:text="${insulin.id}"/>
+    Nazwa:
+    <td th:text="${insulin.name}" value="name"/>
+    Typ:
+    <td th:text="${insulin.type}"/>
+    <a th:href="@{deleteinsulin/{id}(id=${insulin.id})}">Usuń</a>
+    <br>
+</tr>
+<a href="/hello">Home</a>
+<a href="/insulin">Dodaj kolejną insulinę</a>
+<a href="/admin">Panel admina</a>
+</body>
+</html>

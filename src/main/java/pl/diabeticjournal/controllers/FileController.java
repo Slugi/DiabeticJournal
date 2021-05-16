@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.diabeticjournal.services.MailService;
 import pl.diabeticjournal.services.UserService;
+
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.security.Principal;

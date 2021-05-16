@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import pl.diabeticjournal.entity.User;
 import pl.diabeticjournal.entity.UserInfo;
 import pl.diabeticjournal.services.UserInfoService;

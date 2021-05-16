@@ -22,38 +22,38 @@ import java.io.IOException;
 @AllArgsConstructor
 public class MailService {
 
-  private final JavaMailSender javaMailSender;
-  private final FileService fileService;
-  private final MeasurementService measurementService;
+    private final JavaMailSender javaMailSender;
+    private final FileService fileService;
+    private final MeasurementService measurementService;
 
 
-  public void sendMail(String to, String subject, String text, boolean isHtmlContent)
-      throws MessagingException {
+    public void sendMail(String to, String subject, String text, boolean isHtmlContent)
+            throws MessagingException {
 
-    MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-    MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-    mimeMessageHelper.setTo(to);
-    mimeMessageHelper.setSubject(subject);
-    mimeMessageHelper.setText(text, isHtmlContent);
-    javaMailSender.send(mimeMessage);
-  }
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+        mimeMessageHelper.setTo(to);
+        mimeMessageHelper.setSubject(subject);
+        mimeMessageHelper.setText(text, isHtmlContent);
+        javaMailSender.send(mimeMessage);
+    }
 
 
-  public void sendMailWithAttachment(String to, String subject, String text, boolean isHtmlContent, User user) throws MessagingException, IOException {
-    MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-    MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
-    mimeMessageHelper.setTo(to);
-    mimeMessageHelper.setSubject(subject);
-    BodyPart messageBodyPart = new MimeBodyPart();
-    messageBodyPart.setText(text);
-    MimeBodyPart attachmentPart = new MimeBodyPart();
-    ByteArrayOutputStream out= fileService.writeExcelMeasurements(measurementService.getMeasurementsByUser(user));
-    attachmentPart.setDataHandler(new DataHandler(new ByteArrayDataSource(out.toByteArray(),"application/vnd.ms-excel")));
-    Multipart multipart = new MimeMultipart();
-    multipart.addBodyPart(messageBodyPart);
-    multipart.addBodyPart(attachmentPart);
-    mimeMessage.setContent(multipart);
-    javaMailSender.send(mimeMessage);
-  }
+    public void sendMailWithAttachment(String to, String subject, String text, boolean isHtmlContent, User user) throws MessagingException, IOException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+        mimeMessageHelper.setTo(to);
+        mimeMessageHelper.setSubject(subject);
+        BodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setText(text);
+        MimeBodyPart attachmentPart = new MimeBodyPart();
+        ByteArrayOutputStream out = fileService.writeExcelMeasurements(measurementService.getMeasurementsByUser(user));
+        attachmentPart.setDataHandler(new DataHandler(new ByteArrayDataSource(out.toByteArray(), "application/vnd.ms-excel")));
+        Multipart multipart = new MimeMultipart();
+        multipart.addBodyPart(messageBodyPart);
+        multipart.addBodyPart(attachmentPart);
+        mimeMessage.setContent(multipart);
+        javaMailSender.send(mimeMessage);
+    }
 
 }

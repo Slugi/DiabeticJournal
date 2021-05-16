@@ -10,6 +10,7 @@ import pl.diabeticjournal.repository.UserRepository;
 
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -46,19 +47,11 @@ public class UserService {
     }
 
     public boolean isEmailexists(User user) {
-        if (userRepo.findUserByEmail(user.getEmail()).isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return userRepo.findUserByEmail(user.getEmail()).isPresent();
     }
 
     public boolean isUserNameExists(User user) {
-        if (userRepo.findByUserName(user.getUsername()).isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return userRepo.findByUserName(user.getUsername()).isPresent();
     }
 
     public User getUserByName(String name) {
@@ -71,5 +64,17 @@ public class UserService {
     public void activate(User user) {
         user.setEnabled(true);
         userRepo.save(user);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepo.findAll();
+    }
+
+    public User getUserById(Long id) {
+        return userRepo.findUserById(id).orElseThrow(() -> new RuntimeException("Nie znaleziono użytkownika."));
+    }
+
+    public void userDelete(User user) {
+        userRepo.delete(user);
     }
 }
